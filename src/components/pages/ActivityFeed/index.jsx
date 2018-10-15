@@ -1,5 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
+import _ from 'lodash'
+
+import DailyActivityList from '../../../components/organisms/DailyActivityList/index.jsx';
 
 export default class ActivityFeed extends React.Component {
 
@@ -10,9 +14,19 @@ export default class ActivityFeed extends React.Component {
     render = () => {
         const { activities } = this.props
 
+        let groupedResults = _.groupBy(activities, (result) =>
+            moment(result['created_at'], 'YYYY-MM-DD').format('LL'));
+
         return (
             <div>
-                Activity list ({activities ? activities.length : -1})
+            {
+                Object.entries(groupedResults).map(([date, dailyActivities]) => {
+                    return <DailyActivityList
+                        date={date}
+                        activities={dailyActivities}
+                        key={`daily-activities-${date}`} />
+                })
+            }
             </div>
         )
     }
@@ -20,5 +34,8 @@ export default class ActivityFeed extends React.Component {
 
 ActivityFeed.propTypes = {
     /** List of activities */
-    activities: PropTypes.object
+    activities: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array
+    ])
 };

@@ -58,6 +58,18 @@ yarn run storybook
 
 The storybook stand alone app is now running on [localhost:9001](http://localhost:9001).
 
+## Deployment
+
+The application has been deployed on AWS. The `dist/*` files have been copied into a S3 bucket with the static website hosting property enabled. Visit the application [here](http://aircall-frontend-test-glambert.s3-website-eu-west-1.amazonaws.com/). You might have to install a CORS extension.
+
+To produce the built files, run:
+
+```
+yarn run build
+```
+
+For now, the deployment has not been scripted, it's still a manual process.
+
 ## API documentation
 
 ### Routes
@@ -72,6 +84,5 @@ After having archived a few calls, you might want to reset the activity list. Do
 ## TODO
 
 A few things are missing or could be improved:
-- Continuous Integration
-- Deploy the application (AWS S3)
-- Setup styleguidist to build a stand alone components documentation app
+- Setup styleguidist to build a stand alone components documentation app.
+- Write a deployment script and use it at the end of the continuous integration pipeline.

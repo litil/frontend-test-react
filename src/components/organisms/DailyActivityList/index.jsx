@@ -10,7 +10,7 @@ import './styles.css';
 export default class DailyActivityList extends React.Component {
 
     render = () => {
-        const { date, activities } = this.props
+        const { date, activities, handleOnClick } = this.props
 
         return (
             <div className="dailyActivity-list">
@@ -20,7 +20,10 @@ export default class DailyActivityList extends React.Component {
 
                 <div className="dailyActivity-container">
                     { activities.map(a =>
-                        <ActivityListItem {...a} key={`activity-list-item-${a.id}`}/> )
+                        <ActivityListItem
+                            {...a}
+                            key={`activity-list-item-${a.id}`}
+                            handleOnClick={handleOnClick}/> )
                     }
                 </div>
             </div>
@@ -35,5 +38,7 @@ DailyActivityList.propTypes = {
         PropTypes.array
     ]),
     /** Date of the activities */
-    date: PropTypes.string.isRequired
+    date: PropTypes.string.isRequired,
+    /** Function to handle a click on an activity */
+    handleOnClick: PropTypes.func.isRequired
 };

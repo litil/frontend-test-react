@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './Header.jsx';
-import ActivityFeed from './components/pages/ActivityFeed/index.jsx';
+import ActivityFeed from './components/pages/ActivityFeed';
+import ActivityDetails from './components/pages/ActivityDetails';
 
 import 'regenerator-runtime/runtime'
 import registerServiceWorker from "./registerServiceWorker";
@@ -30,7 +32,11 @@ const App = () => {
     <div className='container'>
       <Header/>
       <div className="container-view">
-        <ActivityFeed />
+        <Switch>
+            <Route exact path='/' component={ActivityFeed}></Route>
+            <Route exact path='/activities' component={ActivityFeed}></Route>
+            <Route path='/activities/:id/details' component={ActivityDetails}></Route>
+        </Switch>
       </div>
     </div>
   );
@@ -38,7 +44,9 @@ const App = () => {
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('app')
 );

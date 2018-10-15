@@ -41,11 +41,11 @@ export default class ActivityListItem extends React.Component {
     }
 
     render = () => {
-        const {direction, created_at, from, call_type, to} = this.props
+        const { id, direction, created_at, from, call_type, to, handleOnClick } = this.props
         const time = moment(created_at).format('hh:mm A')
 
         return (
-            <div className="activityItem-container">
+            <div className="activityItem-container" onClick={() => handleOnClick(id)}>
                 <div className="activityItem-direction">
                     { this.buildDirectionIcon(direction) }
                 </div>
@@ -65,6 +65,8 @@ export default class ActivityListItem extends React.Component {
 }
 
 ActivityListItem.propTypes = {
+    /** Activity id */
+    id: PropTypes.number.isRequired,
     /** Activity created_at */
     created_at: PropTypes.string.isRequired,
     /** Activity direction */
@@ -74,5 +76,7 @@ ActivityListItem.propTypes = {
     /** Activity target */
     to: PropTypes.string,
     /** Activity via */
-    call_type: PropTypes.oneOf(['missed', 'answered', 'voicemail']).isRequired
+    call_type: PropTypes.oneOf(['missed', 'answered', 'voicemail']).isRequired,
+    /** Function to handle a click on an activity */
+    handleOnClick: PropTypes.func.isRequired
 };

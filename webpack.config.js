@@ -2,6 +2,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+    output: {
+        publicPath: '/'
+    },
     module: {
         rules: [
             {
@@ -39,5 +42,9 @@ module.exports = {
         extensions: [
             '.js', '.jsx', '.json'
         ]
+    },
+    devServer: {
+        // @see https://tylermcginnis.com/react-router-cannot-get-url-refresh/
+        historyApiFallback: true
     }
 };

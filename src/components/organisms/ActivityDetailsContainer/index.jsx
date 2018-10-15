@@ -6,7 +6,10 @@ import ActivityDetailsRow from 'components/molecules/ActivityDetailsRow/index.js
 
 import './styles.css';
 
-
+/**
+ * Main component of the activity details view. It displays all the activity
+ * information. It displays a button to archive a call.
+ */
 export default class ActivityDetailsContainer extends React.Component {
 
     render = () => {
@@ -28,7 +31,7 @@ export default class ActivityDetailsContainer extends React.Component {
                     <ActivityDetailsRow label="Duration (s)" value={activityDetails.duration} />
                     <ActivityDetailsRow label="Archived" value={activityDetails.is_archived ? 'yes' : 'no'} />
                     <ActivityDetailsRow label="Call type" value={activityDetails.call_type} />
-                    
+
                     {!activityDetails.is_archived ? <button
                         disabled={activityDetails.isArchiving}
                         className="activityDetails-archive"

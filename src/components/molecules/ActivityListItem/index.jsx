@@ -8,8 +8,16 @@ import UnknownCall from 'components/elements/CallIcons/UnknownCall.jsx';
 
 import './styles.css';
 
+/**
+ * Display an item in the activity list. A click on this components redirects
+ * to the activity details page.
+ */
 export default class ActivityListItem extends React.Component {
 
+    /**
+     * Build a message based on the call type and the
+     * call's target.
+     */
     buildCallTypeInfo = (callType, to) => {
         const target = to || 'unknown target'
 
@@ -26,8 +34,11 @@ export default class ActivityListItem extends React.Component {
         }
     }
 
+    /**
+     * Return the icon components corresponding to the
+     * given direction.
+     */
     buildDirectionIcon = (direction) => {
-
         // TODO create an enum for call types
         switch (direction) {
             case "inbound":

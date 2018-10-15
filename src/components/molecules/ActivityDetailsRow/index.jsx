@@ -4,6 +4,9 @@ import moment from 'moment'
 
 import './styles.css';
 
+/**
+ * Display a label and its value on the same line.
+ */
 export default class ActivityDetailsRow extends React.Component {
 
     render = () => {

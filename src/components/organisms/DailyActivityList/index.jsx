@@ -6,7 +6,9 @@ import ActivityListItem from 'components/molecules/ActivityListItem/index.jsx';
 
 import './styles.css';
 
-
+/**
+ * Displays all activities of a day.
+ */
 export default class DailyActivityList extends React.Component {
 
     render = () => {

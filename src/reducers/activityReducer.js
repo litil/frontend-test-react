@@ -4,6 +4,10 @@ const initialState = {
     isFetching: false
 }
 
+/**
+ * The only one reducer of the application. It handles a few actions such as listing
+ * activities, fetching and archiving an activity.
+ */
 const activityReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ARCHIVE_ACTIVITY_REQUEST:

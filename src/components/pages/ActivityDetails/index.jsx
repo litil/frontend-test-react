@@ -7,7 +7,9 @@ import { archiveActivityRequest } from 'actions/archiveActivityAction'
 
 import ActivityDetailsContainer from 'components/organisms/ActivityDetailsContainer'
 
-
+/**
+ * One of the 2 views of the application. It displays the details of an activity.
+ */
 class ActivityDetails extends React.Component {
 
     componentDidMount = () => {

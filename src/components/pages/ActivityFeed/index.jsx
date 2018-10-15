@@ -8,7 +8,10 @@ import { listActivitiesRequest } from 'actions/listActivitiesAction'
 
 import DailyActivityList from 'components/organisms/DailyActivityList/index.jsx';
 
-
+/**
+ * One of the 2 views of the application. It displays all the activities, grouped
+ * by day.
+ */
 class ActivityFeed extends React.Component {
 
     componentDidMount = () => {

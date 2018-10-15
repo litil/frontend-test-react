@@ -1,2 +1,2 @@
 // @see https://jestjs.io/docs/en/webpack
-module.exports = {};
+module.exports = {}

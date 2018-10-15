@@ -1,34 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
-import _ from 'lodash'
+import { connect } from "react-redux"
+
+import { listActivitiesRequest } from 'actions/listActivitiesAction'
 
 import DailyActivityList from 'components/organisms/DailyActivityList/index.jsx';
 
-export default class ActivityFeed extends React.Component {
+
+class ActivityFeed extends React.Component {
 
     componentDidMount = () => {
-        // TODO we'll send the action to fetch the activities from here
+        this.props.listActivities()
     }
 
     render = () => {
-        const { activities } = this.props
+        const { groupedActivities, isFetching } = this.props
 
-        let groupedResults = _.groupBy(activities, (result) =>
-            moment(result['created_at'], 'YYYY-MM-DD').format('LL'));
-
-        return (
-            <div>
+        if (!isFetching && !groupedActivities) return 'No activity found'
+        else if (isFetching) return 'Loading...'
+        else return <div>
             {
-                Object.entries(groupedResults).map(([date, dailyActivities]) => {
+                Object.entries(groupedActivities).map(([date, dailyActivities]) => {
                     return <DailyActivityList
                         date={date}
                         activities={dailyActivities}
                         key={`daily-activities-${date}`} />
                 })
             }
-            </div>
-        )
+        </div>
     }
 }
 
@@ -37,5 +36,26 @@ ActivityFeed.propTypes = {
     activities: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.array
-    ])
+    ]),
+    /** Is the app fetching the activity data? */
+    isFetching: PropTypes.bool,
+    /** Function performing an API call to list the activities */
+    listActivities: PropTypes.func.isRequired
 };
+
+const mapDispatchToProps = dispatch => {
+    return ({
+        listActivities: () => dispatch(listActivitiesRequest())
+    })
+}
+
+const mapStateToProps = state => {
+    const { activityReducer } = state
+
+    const groupedActivities = activityReducer ? activityReducer.data : {}
+    const isFetching = activityReducer ? activityReducer.isFetching : false
+
+    return { groupedActivities, isFetching }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityFeed)

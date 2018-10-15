@@ -1,10 +1,10 @@
 {
     "name": "frontend-test-react",
-    "version": "1.0.0",
-    "description": "Technical test for Frontend Engineer position at Aircall",
+    "version": "1.0.1",
+    "description": "ReactJS application displaying Aircall activities",
     "main": "index.js",
-    "repository": "https://github.com/aircall/frontend-test-react.git",
-    "author": "Xavier Durand <jobs@aircall.io>",
+    "repository": "https://github.com/litil/frontend-test-react.git",
+    "author": "Guillaume Lambert <guillaume.p.lambert@gmail.com>",
     "license": "MIT",
     "private": false,
     "scripts": {

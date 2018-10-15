@@ -41,9 +41,9 @@ test('ActivityListitem displays the target number if defined', () => {
 });
 
 test('ActivityListitem displays unknown target if no target is given', () => {
-    const outboundActivity = Object.assign(activity, {to: null})
+    const unknownTargetActivity = Object.assign(activity, {to: null})
 
-    const cmpt = shallow(<ActivityListitem {...activity}/>);
+    const cmpt = shallow(<ActivityListitem {...unknownTargetActivity}/>);
 
     expect(cmpt.find('.activityItem-target').at(0).text()).toContain('unknown target');
 });

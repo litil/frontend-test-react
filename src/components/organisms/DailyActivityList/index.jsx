@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
-import ActivityListItem from '../../molecules/ActivityListItem/index.jsx';
+import ActivityListItem from 'components/molecules/ActivityListItem/index.jsx';
 
 import './styles.css';
 

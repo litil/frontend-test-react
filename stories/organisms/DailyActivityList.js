@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import DailyActivityList from '../../src/components/organisms/DailyActivityList';
+import DailyActivityList from 'components/organisms/DailyActivityList';
 
 const dailyActivities = [
   {

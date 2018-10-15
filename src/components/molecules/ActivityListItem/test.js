@@ -3,9 +3,9 @@ import {shallow} from 'enzyme';
 import moment from 'moment';
 
 import ActivityListitem from './index.jsx';
-import InboundCall from '../../elements/CallIcons/InboundCall.jsx';
-import OutboundCall from '../../elements/CallIcons/OutboundCall.jsx';
-import UnknownCall from '../../elements/CallIcons/UnknownCall.jsx';
+import InboundCall from 'components/elements/CallIcons/InboundCall.jsx';
+import OutboundCall from 'components/elements/CallIcons/OutboundCall.jsx';
+import UnknownCall from 'components/elements/CallIcons/UnknownCall.jsx';
 
 const activity = {
     id: 7833,

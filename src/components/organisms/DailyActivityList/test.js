@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import moment from 'moment';
 
 import DailyActivityList from './index.jsx';
-import ActivityListItem from '../../molecules/ActivityListItem/index.jsx';
+import ActivityListItem from 'components/molecules/ActivityListItem/index.jsx';
 
 const date = 'April 19, 2018'
 const dailyActivities = [

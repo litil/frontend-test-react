@@ -6,6 +6,45 @@ const initialState = {
 
 const activityReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.ARCHIVE_ACTIVITY_REQUEST:
+        {
+            // set the isArchiving boolean to true for the corresponding activity
+            const { activityId } = action
+            const activities = state.activities.map(a => a.id == activityId ?
+                Object.assign({}, a, { isArchiving: true } )
+                : a )
+
+            return {
+                ...state,
+                activities
+            }
+        }
+        case actionTypes.ARCHIVE_ACTIVITY_SUCCESS:
+        {
+            // remove the archived activity
+            const { activityId } = action
+            const activities = state.activities.map(a => a.id == activityId ?
+                Object.assign({}, a, { isArchiving: false, is_archived: true } )
+                : a )
+
+            return {
+                ...state,
+                activities
+            }
+        }
+        case actionTypes.ARCHIVE_ACTIVITY_FAILURE:
+        {
+            // set the isArchiving boolean to true for the corresponding activity
+            const { activityId } = action
+            const activities = state.activities.map(a => a.id == activityId ?
+                Object.assign({}, a, { isArchiving: false } )
+                : a )
+
+            return {
+                ...state,
+                activities
+            }
+        }
         case actionTypes.GET_ACTIVITY_REQUEST:
         {
             // get the corresponding activity or create it

@@ -60,14 +60,18 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     const { activityReducer } = state
 
-    const activities = activityReducer ? activityReducer.activities : {}
     const isFetching = activityReducer ? activityReducer.isFetching : false
 
-    // formatting received response
-    const groupedActivities = _.groupBy(activities, result =>
-        moment(result.created_at, 'YYYY-MM-DD').format('LL'))
+    if (activityReducer && activityReducer.activities) {
+        const notArchivedActivities = activityReducer.activities.filter(a => a.is_archived != true)
+        // grouping the activities by day
+        const groupedActivities = _.groupBy(notArchivedActivities, result =>
+            moment(result.created_at, 'YYYY-MM-DD').format('LL'))
 
-    return { groupedActivities, isFetching }
+        return { groupedActivities, isFetching }
+    } else {
+         return { isFetching }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityFeed)

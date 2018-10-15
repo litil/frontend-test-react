@@ -15,7 +15,8 @@ const activity = {
     is_archived: false,
     call_type: 'missed'
 }
-const onClickFunc = jest.fn()
+const onClickBackFunc = jest.fn()
+const archiveActivityFunc = jest.fn()
 const match = {
     params: {
         id: activity.id
@@ -23,7 +24,7 @@ const match = {
 }
 
 test("ActivityDetailsContainer displays all activity's properties", () => {
-    const cmpt = shallow(<ActivityDetailsContainer activityDetails={activity} handleOnClickBack={onClickFunc} match={match} /> )
+    const cmpt = shallow(<ActivityDetailsContainer activityDetails={activity} handleOnClickBack={onClickBackFunc} archiveActivity={archiveActivityFunc} match={match} /> )
 
     expect(cmpt.find(ActivityDetailsRow).length).toEqual(9)
 })

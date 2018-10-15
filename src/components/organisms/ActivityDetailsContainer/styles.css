@@ -15,3 +15,8 @@
     flex-direction: column;
     margin-top: 32px;
 }
+
+.activityDetails-info button {
+    cursor: pointer;
+    padding: 4px
+}

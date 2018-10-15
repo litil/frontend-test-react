@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from "react-redux"
 
 import { getActivityRequest } from 'actions/getActivityAction'
+import { archiveActivityRequest } from 'actions/archiveActivityAction'
 
 import ActivityDetailsContainer from 'components/organisms/ActivityDetailsContainer'
 
@@ -21,6 +22,12 @@ class ActivityDetails extends React.Component {
         this.props.history.push(`/activities`)
     }
 
+    handleOnClickArchive = (activityId) => {
+        // archive the activity and stay in the same view
+        // we could redirect to the activity feed
+        this.props.archiveActivity(activityId)
+    }
+
     render = () => {
         const { activityDetails } = this.props
         const activityId = this.props.match.params.id
@@ -30,7 +37,8 @@ class ActivityDetails extends React.Component {
         else return <ActivityDetailsContainer
             activityId={ this.props.match.params.id }
             activityDetails={ activityDetails }
-            handleOnClickBack={ this.handleOnClickBack } />
+            handleOnClickBack={ this.handleOnClickBack }
+            archiveActivity={ this.handleOnClickArchive } />
     }
 }
 
@@ -41,7 +49,8 @@ ActivityDetails.propTypes = {
 
 const mapDispatchToProps = dispatch => {
     return ({
-        getActivity: (activityId) => dispatch(getActivityRequest(activityId))
+        getActivity: (activityId) => dispatch(getActivityRequest(activityId)),
+        archiveActivity: (activityId) => dispatch(archiveActivityRequest(activityId))
     })
 }
 

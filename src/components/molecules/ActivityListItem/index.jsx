@@ -35,6 +35,7 @@ export default class ActivityListItem extends React.Component {
             case "outbound":
                 return <OutboundCall />
             default:
+                // must not happen as direction has 2 valid values defined in PropTypes
                 return <UnknownCall />
         }
     }
@@ -64,8 +65,6 @@ export default class ActivityListItem extends React.Component {
 }
 
 ActivityListItem.propTypes = {
-    /** Activity id */
-    id: PropTypes.number.isRequired,
     /** Activity created_at */
     created_at: PropTypes.string.isRequired,
     /** Activity direction */
@@ -74,10 +73,6 @@ ActivityListItem.propTypes = {
     from: PropTypes.string.isRequired,
     /** Activity target */
     to: PropTypes.string,
-    /** Activity via */
-    via: PropTypes.string.isRequired,
-    /** Is the activity archived? */
-    is_archived: PropTypes.bool.isRequired,
     /** Activity via */
     call_type: PropTypes.oneOf(['missed', 'answered', 'voicemail']).isRequired
 };

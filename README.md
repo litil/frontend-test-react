@@ -2,6 +2,8 @@
 
 This test is a part of the hiring process at Aircall for frontend positions. More information about the test  [here](https://github.com/aircall/frontend-test-react).
 
+[![CircleCI](https://circleci.com/gh/litil/frontend-test-react.svg?style=svg)](https://circleci.com/gh/litil/frontend-test-react)
+
 ## Summary
 
 The goal of this test was to make a ReactJS application displaying information about calls.

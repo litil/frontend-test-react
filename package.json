@@ -11,6 +11,7 @@
         "start": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --mode development --open --port 8081",
         "build": "webpack --mode production",
         "test": "jest",
+        "testCoverage": "jest --coverage",
         "storybook": "start-storybook -p 9001 -c .storybook",
         "lint": "eslint src"
     },

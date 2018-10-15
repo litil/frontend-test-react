@@ -29,7 +29,13 @@ The app is now running on [localhost:8081](http://localhost:8081).
 We're using [jest](https://jestjs.io/). Some of the components and sagas have been tested. To run the tests:
 
 ```
-yarn run jest
+yarn run test
+```
+
+To run the tests and collect test coverage information:
+
+```
+yarn run testCoverage
 ```
 
 ## Run linter
@@ -48,6 +54,8 @@ We're using [storybook](https://github.com/storybooks/storybook) here:
 yarn run storybook
 ```
 
+The storybook stand alone app is now running on [localhost:9001](http://localhost:9001).
+
 ## API documentation
 
 ### Routes
@@ -64,3 +72,4 @@ After having archived a few calls, you might want to reset the activity list. Do
 A few things are missing or could be improved:
 - Continuous Integration
 - Deploy the application (AWS S3)
+- Setup styleguidist to build a stand alone components documentation app

@@ -1,6 +1,4 @@
 import * as actionTypes from 'actions/actionTypes'
-import moment from 'moment'
-import _ from 'lodash'
 
 const initialState = {
     isFetching: false
@@ -8,6 +6,46 @@ const initialState = {
 
 const activityReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.GET_ACTIVITY_REQUEST:
+        {
+            // get the corresponding activity or create it
+            // and set the isFetching boolean to true
+            const { activityId } = action
+            const activities = state.activities || [{ id: activityId }]
+            const data = activities.map(a => a.id == activityId ?
+                Object.assign({}, a, { isFetching: true } )
+                : a )
+
+            return {
+                ...state,
+                activities: data
+            }
+        }
+        case actionTypes.GET_ACTIVITY_SUCCESS:
+        {
+            // get the corresponding activity
+            // and set the isFetching boolean to false
+            const { activityId } = action
+            const { data } = action.response
+            const activities = state.activities.map(a => a.id == activityId ?
+                Object.assign({}, data, { isFetching: false } )
+                : a )
+
+            return {
+                ...state,
+                activities
+            }
+        }
+        case actionTypes.GET_ACTIVITY_FAILURE:
+        {
+            // remove the corresponding activity
+            const { activityId } = action
+            const activities = state.activities.filter(a => a.id != activityId)
+            return {
+                ...state,
+                activities
+            }
+        }
         case actionTypes.LIST_ACTIVITIES_REQUEST:
         {
             return {
@@ -19,13 +57,10 @@ const activityReducer = (state = initialState, action) => {
         {
             // formatting received response
             const { data } = action.response
-            const groupedResults = _.groupBy(data, result =>
-                moment(result.created_at, 'YYYY-MM-DD').format('LL'))
-
             return {
                 ...state,
                 isFetching: false,
-                data: groupedResults,
+                activities: data,
                 lastUpdated: action.receivedAt
             }
         }
@@ -34,7 +69,7 @@ const activityReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                data: undefined,
+                activities: undefined,
                 lastUpdated: action.receivedAt
             }
         }

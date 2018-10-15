@@ -1,0 +1,17 @@
+.activityDetails-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.activityDetails-back {
+    cursor: pointer;
+}
+
+.activityDetails-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}

@@ -1,0 +1,9 @@
+.activityDetailsRow-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.activityDetailsRow-label {
+    margin-right: 8px;
+    margin-bottom: 12px;
+}

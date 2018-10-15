@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import {shallow} from 'enzyme'
 
 import ActivityListItem from 'components/molecules/ActivityListItem'
 import DailyActivityList from './index'
@@ -15,9 +15,8 @@ const dailyActivities = [
         via: 'NYC Office',
         duration: '60',
         is_archived: false,
-        call_type: 'missed',
-    },
-    {
+        call_type: 'missed'
+    }, {
         id: 7832,
         created_at: '2018-04-18T16:53:22.000Z',
         direction: 'inbound',
@@ -26,9 +25,8 @@ const dailyActivities = [
         via: 'Support FR',
         duration: '180',
         is_archived: false,
-        call_type: 'answered',
-    },
-    {
+        call_type: 'answered'
+    }, {
         id: 7831,
         created_at: '2018-04-18T16:42:55.000Z',
         direction: 'inbound',
@@ -37,9 +35,8 @@ const dailyActivities = [
         via: 'Support FR',
         duration: '180',
         is_archived: false,
-        call_type: 'answered',
-    },
-    {
+        call_type: 'answered'
+    }, {
         id: 7830,
         created_at: '2018-04-18T16:23:43.000Z',
         direction: 'inbound',
@@ -48,9 +45,8 @@ const dailyActivities = [
         via: 'Support FR',
         duration: '120',
         is_archived: false,
-        call_type: 'voicemail',
-    },
-    {
+        call_type: 'voicemail'
+    }, {
         id: 7829,
         created_at: '2018-04-18T15:43:32.000Z',
         direction: 'inbound',
@@ -59,18 +55,19 @@ const dailyActivities = [
         via: 'Spain Hotline',
         duration: '300',
         is_archived: false,
-        call_type: 'answered',
-    },
+        call_type: 'answered'
+    }
 ]
+const onClickFunc = jest.fn()
 
 test("DailyActivityList's title is the given date", () => {
-    const cmpt = shallow(<DailyActivityList date={date} activities={dailyActivities} />)
+    const cmpt = shallow(<DailyActivityList date={date} activities={dailyActivities} handleOnClick={onClickFunc} />)
 
     expect(cmpt.find('h2').at(0).text()).toEqual(date)
 })
 
 test('DailyActivityList displays an ActivityListItem for each given activity', () => {
-    const cmpt = shallow(<DailyActivityList date={date} activities={dailyActivities} />)
+    const cmpt = shallow(<DailyActivityList date={date} activities={dailyActivities} handleOnClick={onClickFunc} />)
 
     expect(cmpt.find(ActivityListItem).length).toEqual(dailyActivities.length)
 })

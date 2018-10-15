@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from "react-redux"
+import moment from 'moment'
+import _ from 'lodash'
 
 import { listActivitiesRequest } from 'actions/listActivitiesAction'
 
@@ -11,6 +13,11 @@ class ActivityFeed extends React.Component {
 
     componentDidMount = () => {
         this.props.listActivities()
+    }
+
+    handleOnClick = (activityId) => {
+        // redirect to the activity details view
+        this.props.history.push(`/activities/${activityId}/details`)
     }
 
     render = () => {
@@ -24,7 +31,8 @@ class ActivityFeed extends React.Component {
                     return <DailyActivityList
                         date={date}
                         activities={dailyActivities}
-                        key={`daily-activities-${date}`} />
+                        key={`daily-activities-${date}`}
+                        handleOnClick={this.handleOnClick} />
                 })
             }
         </div>
@@ -52,8 +60,12 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     const { activityReducer } = state
 
-    const groupedActivities = activityReducer ? activityReducer.data : {}
+    const activities = activityReducer ? activityReducer.activities : {}
     const isFetching = activityReducer ? activityReducer.isFetching : false
+
+    // formatting received response
+    const groupedActivities = _.groupBy(activities, result =>
+        moment(result.created_at, 'YYYY-MM-DD').format('LL'))
 
     return { groupedActivities, isFetching }
 }

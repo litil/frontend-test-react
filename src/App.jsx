@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Header from './Header.jsx';
 import ActivityFeed from './components/pages/ActivityFeed/index.jsx';
 
-import { activitiesData } from './__mocks__/activitiesData.js';
+import activitiesData from './__mocks__/activitiesData.js';
 
 const App = () => {
   return (

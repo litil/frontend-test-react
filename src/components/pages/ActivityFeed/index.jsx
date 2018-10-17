@@ -5,8 +5,9 @@ import moment from 'moment'
 import _ from 'lodash'
 
 import { listActivitiesRequest } from 'actions/listActivitiesAction'
+import { isObjectEmpty } from 'utils'
 
-import DailyActivityList from 'components/organisms/DailyActivityList/index.jsx';
+import DailyActivityList from 'components/organisms/DailyActivityList/index';
 
 /**
  * One of the 2 views of the application. It displays all the activities, grouped
@@ -26,8 +27,10 @@ class ActivityFeed extends React.Component {
     render = () => {
         const { groupedActivities, isFetching } = this.props
 
-        if (!isFetching && !groupedActivities) return 'No activity found'
-        else if (isFetching) return 'Loading...'
+        console.log('groupedActivities', groupedActivities)
+
+        if (isFetching) return 'Loading...'
+        else if (!isFetching && isObjectEmpty(groupedActivities)) return 'No activity found'
         else return <div>
             {
                 Object.entries(groupedActivities).map(([date, dailyActivities]) => {
@@ -67,6 +70,7 @@ const mapStateToProps = state => {
 
     if (activityReducer && activityReducer.activities) {
         const notArchivedActivities = activityReducer.activities.filter(a => a.is_archived != true)
+
         // grouping the activities by day
         const groupedActivities = _.groupBy(notArchivedActivities, result =>
             moment(result.created_at, 'YYYY-MM-DD').format('LL'))

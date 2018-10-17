@@ -27,8 +27,6 @@ class ActivityFeed extends React.Component {
     render = () => {
         const { groupedActivities, isFetching } = this.props
 
-        console.log('groupedActivities', groupedActivities)
-
         if (isFetching) return 'Loading...'
         else if (!isFetching && isObjectEmpty(groupedActivities)) return 'No activity found'
         else return <div>

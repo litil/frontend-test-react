@@ -34,7 +34,7 @@ We're using [jest](https://jestjs.io/). Some of the components and sagas have be
 yarn run test
 ```
 
-To run the tests and collect test coverage information:
+To run the tests and collect code coverage information:
 
 ```
 yarn run testCoverage
@@ -86,3 +86,5 @@ After having archived a few calls, you might want to reset the activity list. Do
 A few things are missing or could be improved:
 - Setup styleguidist to build a stand alone components documentation app.
 - Write a deployment script and use it at the end of the continuous integration pipeline.
+- Handle errors by creating a dedicated reducer and displaying alerts
+-

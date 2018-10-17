@@ -7,7 +7,6 @@ import ActivityFeed from './components/pages/ActivityFeed';
 import ActivityDetails from './components/pages/ActivityDetails';
 
 import 'regenerator-runtime/runtime'
-import registerServiceWorker from "./registerServiceWorker";
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { Provider } from "react-redux";
@@ -54,7 +53,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
-
-registerServiceWorker();
 
 export default App;

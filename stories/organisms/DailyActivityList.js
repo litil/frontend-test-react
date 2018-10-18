@@ -40,7 +40,12 @@ const dailyActivities = [
   }
 ]
 
+const handleOnClick = (id) => { return alert(`click on ${id}`)}
+
 storiesOf('DailyActivityList', module)
     .add('with several activities', () => (
-        <DailyActivityList date={"Sept, 21st 2018"} activities={dailyActivities} />
+        <DailyActivityList
+            date={"Sept, 21st 2018"}
+            activities={dailyActivities}
+            handleOnClick={handleOnClick} />
     ))

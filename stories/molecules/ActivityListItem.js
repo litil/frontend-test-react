@@ -14,14 +14,15 @@ const activity = {
 }
 const outboundActivity = Object.assign({}, activity, {direction: 'outbound'})
 const unknownTargetActivity = Object.assign({}, activity, {to: null})
+const handleOnClick = (id) => { return alert(`click on ${id}`)}
 
 storiesOf('ActivityListItem', module)
     .add('with inbound call', () => (
-        <ActivityListItem {...activity} />
+        <ActivityListItem {...activity} handleOnClick={handleOnClick} />
     ))
     .add('with outbound call', () => (
-        <ActivityListItem {...outboundActivity} />
+        <ActivityListItem {...outboundActivity} handleOnClick={handleOnClick} />
     ))
     .add('with unknown target', () => (
-        <ActivityListItem {...unknownTargetActivity} />
+        <ActivityListItem {...unknownTargetActivity} handleOnClick={handleOnClick} />
     ))
